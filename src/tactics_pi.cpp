@@ -747,25 +747,34 @@ int tactics_pi::GetPlugInVersionMajor()
 	return PLUGIN_VERSION_MAJOR;
 }
 //*********************************************************************************
-//int tactics_pi::GetPlugInVersionMinor()
-//{
-//    return PLUGIN_VERSION_MINOR;
-//}
 int tactics_pi::GetPlugInVersionMinor()
 {
-    int version_patch = (PLUGIN_VERSION_MINOR * 1000) + PLUGIN_VERSION_PATCH;
-    return version_patch;
+    return PLUGIN_VERSION_MINOR;
 }
+//int tactics_pi::GetPlugInVersionMinor()
+//{
+//    int version_patch = (PLUGIN_VERSION_MINOR * 1000) + PLUGIN_VERSION_PATCH;
+//    return version_patch;
+//}
 //*********************************************************************************
 wxBitmap *tactics_pi::GetPlugInBitmap()
 {
 	return _img_tactics_pi;
 }
 
+//wxString tactics_pi::GetCommonName()
+//{
+//	return _("Tactics");
+//}
 wxString tactics_pi::GetCommonName()
 {
-	return _("Tactics");
+    static const char* common_name= _("Tactics");
+    char common_name_version[100];
+    sprintf( common_name_version, "%s v%d.%d.%d",
+            common_name, PLUGIN_VERSION_MAJOR, PLUGIN_VERSION_MINOR, PLUGIN_VERSION_PATCH ); 
+    return common_name_version;
 }
+
 //*********************************************************************************
 wxString tactics_pi::GetShortDescription()
 {
