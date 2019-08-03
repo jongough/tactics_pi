@@ -747,9 +747,14 @@ int tactics_pi::GetPlugInVersionMajor()
 	return PLUGIN_VERSION_MAJOR;
 }
 //*********************************************************************************
+//int tactics_pi::GetPlugInVersionMinor()
+{
+//    return PLUGIN_VERSION_MINOR;
+}
 int tactics_pi::GetPlugInVersionMinor()
 {
-    return PLUGIN_VERSION_MINOR;
+    int version_patch = (PLUGIN_VERSION_MINOR * 1000) + PLUGIN_VERSION_PATCH;
+    return version_patch;
 }
 //*********************************************************************************
 wxBitmap *tactics_pi::GetPlugInBitmap()
