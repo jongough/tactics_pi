@@ -748,9 +748,9 @@ int tactics_pi::GetPlugInVersionMajor()
 }
 //*********************************************************************************
 //int tactics_pi::GetPlugInVersionMinor()
-{
+//{
 //    return PLUGIN_VERSION_MINOR;
-}
+//}
 int tactics_pi::GetPlugInVersionMinor()
 {
     int version_patch = (PLUGIN_VERSION_MINOR * 1000) + PLUGIN_VERSION_PATCH;
