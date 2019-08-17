@@ -761,7 +761,7 @@ int tactics_pi::GetPlugInVersionMinor()
 //*********************************************************************************
 wxBitmap *tactics_pi::GetPlugInBitmap()
 {
- return new wxBitmap(_img_dashboard_tactics_pi->ConvertToImage().Copy());
+ return new wxBitmap(_img_tactics_pi->ConvertToImage().Copy());
 } 
 
 //	return _img_tactics_pi;
@@ -2756,7 +2756,7 @@ void tactics_pi::ShowPreferencesDialog(wxWindow* parent)
 					, GetCommonName(), pos
 					, GetCommonName(),
 					GetNameVersion(),
-					pos
+					pos;
 
 	if (dialog->ShowModal() == wxID_OK) {
 		delete g_pFontTitle;
@@ -3263,8 +3263,8 @@ TacticsPreferencesDialog::TacticsPreferencesDialog(
 //	wxDialog(parent, id, _("Tactics preferences"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxMAXIMIZE_BOX | wxMINIMIZE_BOX | wxRESIZE_BORDER)
 	//wxDEFAULT_DIALOG_STYLE )
 {
-	Connect(wxEVT_CLOSE_WINDOW, wxCloseEventHandler(TacticsPreferencesDialog::OnCloseDialog ),
-		NULL, this );
+	Connect(wxEVT_CLOSE_WINDOW, wxCloseEventHandler(TacticsPreferencesDialog::OnCloseDialog),
+		NULL, this);
 
 	// Copy original config
 	m_Config = wxArrayOfTactics(config);
