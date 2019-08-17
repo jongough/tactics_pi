@@ -110,14 +110,16 @@ bool g_bNKE_TrueWindTableBug;//variable for NKE TrueWindTable-Bugfix
 bool b_tactics_dc_message_shown = false;
 wxString g_sCMGSynonym, g_sVMGSynonym;
 wxString g_sDataExportSeparator;
+// Petri addeds
+const char *tactics_pi::s_common_name = _("Tactics");
 
 #if !defined(NAN)
 static const long long lNaN = 0xfff8000000000000;
 #define NAN (*(double*)&lNaN)
 #endif
 
-
 // the class factories, used to create and destroy instances of the PlugIn
+
 
 extern "C" DECL_EXP opencpn_plugin* create_pi(void *ppimgr)
 {
@@ -759,21 +761,38 @@ int tactics_pi::GetPlugInVersionMinor()
 //*********************************************************************************
 wxBitmap *tactics_pi::GetPlugInBitmap()
 {
-	return _img_tactics_pi;
-}
+ return new wxBitmap(_img_dashboard_tactics_pi->ConvertToImage().Copy());
+} 
+
+//	return _img_tactics_pi;
+// }
 
 //wxString tactics_pi::GetCommonName()
 //{
 //	return _("Tactics");
 //}
+
+
+wxString tactics_pi::GetNameVersion()
+{
+    char name_version[32];
+    sprintf( name_version, "v%d.%d.%d",
+             PLUGIN_VERSION_MAJOR, PLUGIN_VERSION_MINOR, PLUGIN_VERSION_PATCH ); 
+    wxString retstr(name_version); 
+	return retstr;
+}
+wxString tactics_pi::GetCommonNameVersion()
+{
+    wxString retstr ( GetCommonName() + " " + GetNameVersion() );
+    return retstr;
+}
+
 wxString tactics_pi::GetCommonName()
 {
-    static const char* common_name= _("Tactics");
-    char common_name_version[100];
-    sprintf( common_name_version, "%s v%d.%d.%d",
-            common_name, PLUGIN_VERSION_MAJOR, PLUGIN_VERSION_MINOR, PLUGIN_VERSION_PATCH ); 
-    return common_name_version;
+    return s_common_name;
 }
+//Changes above made per Canne dashboard_tactics
+//Commit  "CMake-generated version management from a single file" 
 
 //*********************************************************************************
 wxString tactics_pi::GetShortDescription()
@@ -785,7 +804,6 @@ wxString tactics_pi::GetLongDescription()
 {
 	return _("Tactics PlugIn for OpenCPN\n\
 			 Provides performance data & instrument display from NMEA source and polar file.");
-
 }
 //*********************************************************************************
 void tactics_pi::SendSentenceToAllInstruments(int st, double value, wxString unit)
@@ -2728,8 +2746,17 @@ int tactics_pi::GetToolbarToolCount(void)
 
 void tactics_pi::ShowPreferencesDialog(wxWindow* parent)
 {
-	TacticsPreferencesDialog *dialog = new TacticsPreferencesDialog(parent, wxID_ANY,
-		m_ArrayOfTacticsWindow);
+    wxPoint pos = wxGetMousePosition();
+    pos.y -= 500;
+    pos.x -= 100;
+    wxString derivtitle = GetCommonName() + " " + GetNameVersion();
+
+//Changed to follow Canne Dashboard_tactics Line 1882 Notes
+	TacticsPreferencesDialog *dialog = new TacticsPreferencesDialog(parent, wxID_ANY,				m_ArrayOfTacticsWindow)
+					, GetCommonName(), pos
+					, GetCommonName(),
+					GetNameVersion(),
+					pos
 
 	if (dialog->ShowModal() == wxID_OK) {
 		delete g_pFontTitle;
@@ -3226,16 +3253,19 @@ void tactics_pi::ShowTactics(size_t id, bool visible)
 /* TacticsPreferencesDialog
 *
 */
+// Canne Dashboard_tactics line 2489 changes  made
+TacticsPreferencesDialog::TacticsPreferencesDialog(
+	wxWindow *parent, wxWindowID id,
+	wxArrayOfTactics config
+	, wxString commonName, wxString versionName, wxPoint pos ) :
+    TacticsPreferencesDialog ( parent, id, commonName + " " + versionName + _(" Preferences"), pos )
 
-TacticsPreferencesDialog::TacticsPreferencesDialog(wxWindow *parent, wxWindowID id,
-	wxArrayOfTactics config) :
-	wxDialog(parent, id, _("Tactics preferences"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxMAXIMIZE_BOX | wxMINIMIZE_BOX | wxRESIZE_BORDER)
+//	wxDialog(parent, id, _("Tactics preferences"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxMAXIMIZE_BOX | wxMINIMIZE_BOX | wxRESIZE_BORDER)
 	//wxDEFAULT_DIALOG_STYLE )
 {
-	Connect(wxEVT_CLOSE_WINDOW, wxCloseEventHandler(TacticsPreferencesDialog::OnCloseDialog),
-		NULL, this);
+	Connect(wxEVT_CLOSE_WINDOW, wxCloseEventHandler(TacticsPreferencesDialog::OnCloseDialog ),
+		NULL, this );
 
-	m_pconfig = GetOCPNConfigObject();
 	// Copy original config
 	m_Config = wxArrayOfTactics(config);
 	//      Build Tactics Page for Toolbox

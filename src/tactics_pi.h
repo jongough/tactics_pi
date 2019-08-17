@@ -195,10 +195,14 @@ public:
 private:
       bool LoadConfig(void);
       void ApplyConfig(void);
+      wxString GetCommonNameVersion(void); //added per Canne Dashboard_tactics
+      wxString GetNameVersion(void);   //added per Canne..
       void SendSentenceToAllInstruments(int st, double value, wxString unit);
       void SendSatInfoToAllInstruments(int cnt, int seq, SAT_INFO sats[4]);
       void SendUtcTimeToAllInstruments( wxDateTime value );
 
+//added per Canne Dashb_tactics
+      static const char *s_common_name;  //added per Canne Dashb_tactics
       wxFileConfig         *m_pconfig;
       wxAuiManager         *m_pauimgr;
       int                  m_toolbar_item_id;
@@ -282,7 +286,10 @@ private:
 class TacticsPreferencesDialog : public wxDialog
 {
 public:
-      TacticsPreferencesDialog( wxWindow *pparent, wxWindowID id, wxArrayOfTactics config );
+      TacticsPreferencesDialog(
+			wxWindow *pparent, wxWindowID id, wxArrayOfTactics config
+				, wxString commonName, wxString nameVersion, wxPoint pos 
+				);
       ~TacticsPreferencesDialog() {}
 
       void OnCloseDialog(wxCloseEvent& event);
