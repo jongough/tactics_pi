@@ -764,18 +764,9 @@ wxBitmap *tactics_pi::GetPlugInBitmap()
  return new wxBitmap(_img_tactics_pi->ConvertToImage().Copy());
 } 
 
-//	return _img_tactics_pi;
-// }
-
-//wxString tactics_pi::GetCommonName()
-//{
-//	return _("Tactics");
-//}
-
-
 wxString tactics_pi::GetNameVersion()
 {
-    char name_version[32];   //for Octal versions,  like "010" turns it into ".8" 
+    char name_version[32];   //for Octal versions,  like "010" turns it into ".8" so use "10"
     sprintf( name_version, "v%d.%d.%d",
              PLUGIN_VERSION_MAJOR, PLUGIN_VERSION_MINOR, PLUGIN_VERSION_PATCH ); 
     wxString retstr(name_version); 

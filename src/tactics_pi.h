@@ -33,15 +33,15 @@
 #ifndef  WX_PRECOMP
   #include "wx/wx.h"
 #endif //precompiled headers
-
 //#define     PLUGIN_VERSION_MAJOR    1
 //#define     PLUGIN_VERSION_MINOR    0
 //#define     PLUGIN_VERSION_PATCH    10
+//#define     MY_API_VERSION_MAJOR    1
+//#define     MY_API_VERSION_MINOR    12
+//MY_API.. added to version.h.in and VERSION.cmake
 //Note: Version.h will be generated in build/CMakeFiles/include.
 #include "version.h"
 
-#define     MY_API_VERSION_MAJOR    1
-#define     MY_API_VERSION_MINOR    12
 
 #include <wx/notebook.h>
 #include <wx/fileconf.h>

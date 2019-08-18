@@ -85,10 +85,12 @@ ENDIF(DEFINED _wx_selected_config)
 MESSAGE (STATUS "*** Staging to build ${PACKAGE_NAME} ***")
 
 include  ("VERSION.cmake")
-configure_file(${PROJECT_SOURCE_DIR}/cmake/wxWTranslateCatalog.h.in ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/include/wxWTranslateCatalog.h)
-
-#  Do the version.h configuration into the build output directory,
+#  Do the version.h & wxWTranslateCatalog configuration into the build output directory,
 #  thereby allowing building from a read-only source tree.
+#  The removes are to get rid of old copies - this can be removed at next release version, i.e. > 1.0.11
+FILE(REMOVE ${PROJECT_SOURCE_DIR}/include/version.h)
+FILE(REMOVE ${PROJECT_SOURCE_DIR}/include/wxWTranslateCatalog.h)
+configure_file(${PROJECT_SOURCE_DIR}/cmake/wxWTranslateCatalog.h.in ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/include/wxWTranslateCatalog.h)
 IF(NOT SKIP_VERSION_CONFIG)
     configure_file(${PROJECT_SOURCE_DIR}/cmake/version.h.in ${CMAKE_CURRENT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/include/version.h)
     configure_file(cmake/wxWTranslateCatalog.h.in ${PROJECT_SOURCE_DIR}/src/wxWTranslateCatalog.h)
