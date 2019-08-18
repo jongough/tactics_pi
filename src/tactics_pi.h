@@ -284,7 +284,7 @@ private:
 //      DECLARE_EVENT_TABLE();
 
 };
-//  Changed to match what Canne suggested Aug 18
+//  Class constructor definition, argument list and types for the constructor, to match Canne suggestion Aug 18
 class TacticsPreferencesDialog : public wxDialog
 {
 public:

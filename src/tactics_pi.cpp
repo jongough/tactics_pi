@@ -2751,13 +2751,8 @@ void tactics_pi::ShowPreferencesDialog(wxWindow* parent)
     pos.x -= 100;
     wxString derivtitle = GetCommonName() + " " + GetNameVersion();
 
-//Changed to follow Canne Dashboard_tactics Line 1882 Notes
-	TacticsPreferencesDialog *dialog = new TacticsPreferencesDialog(parent, wxID_ANY,
-					m_ArrayOfTacticsWindow)
-					, GetCommonName(), pos
-					, GetCommonName(),
-					GetNameVersion(),
-					pos
+//Changed to follow Canne https://github.com/rgleason/tactics_pi/commit/7d7aa9cf868128f43b4cd97feda21617efc8f85a#commitcomment-34731745 
+	TacticsPreferencesDialog *dialog = new TacticsPreferencesDialog(parent, wxID_ANY, m_ArrayOfTacticsWindow, GetCommonName() + " " + GetNameVersion(), m_ArrayOfTacticsWindow
 );
 	if (dialog->ShowModal() == wxID_OK) {
 		delete g_pFontTitle;
