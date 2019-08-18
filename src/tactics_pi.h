@@ -201,8 +201,9 @@ private:
       void SendSatInfoToAllInstruments(int cnt, int seq, SAT_INFO sats[4]);
       void SendUtcTimeToAllInstruments( wxDateTime value );
 
-//added per Canne Dashb_tactics
-      static const char *s_common_name;  //added per Canne Dashb_tactics
+	//added per Canne Dashb_tactics
+      static const char *s_common_name;  
+	//added per Canne Dashb_tactics
       wxFileConfig         *m_pconfig;
       wxAuiManager         *m_pauimgr;
       int                  m_toolbar_item_id;
