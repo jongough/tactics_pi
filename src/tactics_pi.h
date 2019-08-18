@@ -286,11 +286,9 @@ private:
 class TacticsPreferencesDialog : public wxDialog
 {
 public:
-      TacticsPreferencesDialog(
-			wxWindow *pparent, wxWindowID id, wxArrayOfTactics config
-				, wxString commonName, wxString nameVersion, wxPoint pos 
-				);
-      ~TacticsPreferencesDialog() {}
+    TacticsPreferencesDialog(
+        wxWindow *pparent, wxWindowID id, const wxString derivtitle, wxPoint pos = wxDefaultPosition );
+    ~TacticsPreferencesDialog() {}
 
       void OnCloseDialog(wxCloseEvent& event);
       void OnTacticsSelected(wxListEvent& event);

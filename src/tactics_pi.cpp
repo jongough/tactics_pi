@@ -3254,11 +3254,17 @@ void tactics_pi::ShowTactics(size_t id, bool visible)
 *
 */
 // Canne Dashboard_tactics line 2489 changes  made
-TacticsPreferencesDialog::TacticsPreferencesDialog(
-	wxWindow *parent, wxWindowID id,
-	wxArrayOfTactics config
-	, wxString commonName, wxString versionName, wxPoint pos ) :
-    TacticsPreferencesDialog ( parent, id, commonName + " " + versionName + _(" Preferences"), pos )
+
+TacticsPreferencesDialog::TacticsPreferencesDialog(wxWindow *parent, wxWindowID id,
+       const wxString derivtitle, wxArrayOfTactics config ) :
+	wxDialog(parent, id, derivtitle, wxDefaultPosition, wxDefaultSize ,
+        wxDEFAULT_DIALOG_STYLE | wxMAXIMIZE_BOX | wxMINIMIZE_BOX | wxRESIZE_BORDER)
+
+// TacticsPreferencesDialog::TacticsPreferencesDialog(
+//	wxWindow *parent, wxWindowID id,
+//	wxArrayOfTactics config
+//	, wxString commonName, wxString versionName, wxPoint pos ) :
+//    TacticsPreferencesDialog ( parent, id, commonName + " " + versionName + _(" Preferences"), pos )
 
 //	wxDialog(parent, id, _("Tactics preferences"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxMAXIMIZE_BOX | wxMINIMIZE_BOX | wxRESIZE_BORDER)
 	//wxDEFAULT_DIALOG_STYLE )
