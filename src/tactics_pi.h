@@ -281,15 +281,16 @@ private:
 
 //protected:
 //      DECLARE_EVENT_TABLE();
-};
 
+};
+//  Changed to match what Canne suggested Aug 18
 class TacticsPreferencesDialog : public wxDialog
 {
 public:
     TacticsPreferencesDialog(
-        wxWindow *pparent, wxWindowID id, const wxString derivtitle, wxPoint pos = wxDefaultPosition );
+        wxWindow *pparent, wxWindowID id, const wxString derivtitle, wxArrayOfTactics config );
     ~TacticsPreferencesDialog() {}
-
+//changed down to here
       void OnCloseDialog(wxCloseEvent& event);
       void OnTacticsSelected(wxListEvent& event);
       void OnTacticsAdd(wxCommandEvent& event);
