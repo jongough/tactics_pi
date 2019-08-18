@@ -775,7 +775,7 @@ wxBitmap *tactics_pi::GetPlugInBitmap()
 
 wxString tactics_pi::GetNameVersion()
 {
-    char name_version[32];
+    char name_version[32];   //for Octal versions,  like "010"
     sprintf( name_version, "v%d.%d.%d",
              PLUGIN_VERSION_MAJOR, PLUGIN_VERSION_MINOR, PLUGIN_VERSION_PATCH ); 
     wxString retstr(name_version); 
@@ -2746,13 +2746,13 @@ int tactics_pi::GetToolbarToolCount(void)
 
 void tactics_pi::ShowPreferencesDialog(wxWindow* parent)
 {
-    wxPoint pos = wxGetMousePosition();
-    pos.y -= 500;
-    pos.x -= 100;
+//    wxPoint pos = wxGetMousePosition();
+//    pos.y -= 500;
+//    pos.x -= 100;
     wxString derivtitle = GetCommonName() + " " + GetNameVersion();
 
 //Changed to follow Canne https://github.com/rgleason/tactics_pi/commit/7d7aa9cf868128f43b4cd97feda21617efc8f85a#commitcomment-34731745 
-	TacticsPreferencesDialog *dialog = new TacticsPreferencesDialog(parent, wxID_ANY, m_ArrayOfTacticsWindow, GetCommonName() + " " + GetNameVersion(), m_ArrayOfTacticsWindow
+TacticsPreferencesDialog *dialog = new TacticsPreferencesDialog(parent, wxID_ANY, derivtitle, m_ArrayOfTacticsWindow
 );
 	if (dialog->ShowModal() == wxID_OK) {
 		delete g_pFontTitle;
