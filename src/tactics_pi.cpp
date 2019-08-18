@@ -775,7 +775,7 @@ wxBitmap *tactics_pi::GetPlugInBitmap()
 
 wxString tactics_pi::GetNameVersion()
 {
-    char name_version[32];   //for Octal versions,  like "010"
+    char name_version[32];   //for Octal versions,  like "010" turns it into ".8" 
     sprintf( name_version, "v%d.%d.%d",
              PLUGIN_VERSION_MAJOR, PLUGIN_VERSION_MINOR, PLUGIN_VERSION_PATCH ); 
     wxString retstr(name_version); 
